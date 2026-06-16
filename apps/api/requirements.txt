@@ -1,0 +1,10 @@
+fastapi>=0.115.0
+uvicorn[standard]>=0.30.0
+sqlmodel>=0.0.22
+python-multipart>=0.0.9
+pydantic-settings>=2.4.0
+certifi>=2025.0.0
+cryptography>=44.0.0
+lark-oapi>=1.4.0
+psycopg[binary]>=3.2.0
+alembic>=1.13.0

@@ -1,0 +1,37 @@
+name: Adapter request
+description: Request or discuss a new IM/channel adapter.
+title: "[Adapter]: "
+labels: ["adapter"]
+body:
+  - type: input
+    id: channel
+    attributes:
+      label: Channel
+      placeholder: Feishu / WeCom / DingTalk / custom webhook
+    validations:
+      required: true
+  - type: textarea
+    id: use_case
+    attributes:
+      label: Use case
+      description: Which team workflow or business Agent should this channel support?
+    validations:
+      required: true
+  - type: textarea
+    id: payload
+    attributes:
+      label: Sample payload
+      description: Remove secrets and personal data before posting.
+      render: json
+  - type: checkboxes
+    id: requirements
+    attributes:
+      label: Adapter requirements
+      options:
+        - label: Receive text messages
+        - label: Resolve user or chat names
+        - label: Support approval-based mock send
+        - label: Support approval-based real send
+        - label: Store non-message events
+        - label: Provide demo/mock payloads for local validation
+        - label: Document required scopes, secrets and safety defaults

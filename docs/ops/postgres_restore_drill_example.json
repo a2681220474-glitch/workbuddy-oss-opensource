@@ -1,0 +1,19 @@
+{
+  "ok": true,
+  "backend": "postgresql",
+  "mode": "isolated_restore_drill",
+  "completed_at": "2026-01-01T00:00:00+08:00",
+  "production_database_untouched": "workbuddy",
+  "temporary_database": "workbuddy_restore_drill_example_20260101_000000",
+  "backup_path": "/path/to/backups/workbuddy-before-upgrade-YYYYMMDD-HHMMSS.sql",
+  "backup_size_bytes": 123456,
+  "backup_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+  "restored_public_tables": 24,
+  "restored_messages": 12,
+  "restored_approvals": 12,
+  "alembic_version": "example_revision",
+  "temporary_database_removed": true,
+  "production_messages_after_drill": 12,
+  "production_approvals_after_drill": 12,
+  "remaining_temporary_databases": 0
+}

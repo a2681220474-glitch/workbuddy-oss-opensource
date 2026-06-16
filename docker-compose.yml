@@ -1,0 +1,141 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: workbuddy
+      POSTGRES_USER: workbuddy
+      POSTGRES_PASSWORD: workbuddy
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U workbuddy -d workbuddy"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+    volumes:
+      - redis-data:/data
+
+  api:
+    image: python:3.11-slim
+    working_dir: /workspace
+    volumes:
+      - .:/workspace
+      - api-data:/workspace/apps/api/data
+    env_file:
+      - path: .env
+        required: false
+      - path: .env.local
+        required: false
+    environment:
+      DATABASE_URL: postgresql+psycopg://workbuddy:workbuddy@postgres:5432/workbuddy
+      REDIS_URL: redis://redis:6379/0
+      ENABLE_BACKGROUND_JOBS: "true"
+      API_HOST: 0.0.0.0
+      API_PORT: 8000
+    ports:
+      - "8000:8000"
+    command: >
+      sh -c "pip install -r apps/api/requirements.txt &&
+      python scripts/run_migrations.py &&
+      uvicorn apps.api.main:app --host 0.0.0.0 --port 8000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+
+  feishu-worker:
+    image: python:3.11-slim
+    working_dir: /workspace
+    volumes:
+      - .:/workspace
+      - api-data:/workspace/apps/api/data
+    env_file:
+      - path: .env
+        required: false
+      - path: .env.local
+        required: false
+    environment:
+      DATABASE_URL: postgresql+psycopg://workbuddy:workbuddy@postgres:5432/workbuddy
+      REDIS_URL: redis://redis:6379/0
+      ENABLE_REAL_IM_ADAPTERS: "true"
+      ENABLE_BACKGROUND_JOBS: "true"
+    command: >
+      sh -c "pip install -r apps/api/requirements.txt &&
+      python scripts/run_migrations.py &&
+      python -m apps.api.workers.feishu_stream"
+    depends_on:
+      api:
+        condition: service_started
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+
+  runtime-jobs:
+    image: python:3.11-slim
+    working_dir: /workspace
+    volumes:
+      - .:/workspace
+      - api-data:/workspace/apps/api/data
+    env_file:
+      - path: .env
+        required: false
+      - path: .env.local
+        required: false
+    environment:
+      DATABASE_URL: postgresql+psycopg://workbuddy:workbuddy@postgres:5432/workbuddy
+      REDIS_URL: redis://redis:6379/0
+      ENABLE_BACKGROUND_JOBS: "true"
+      BACKGROUND_QUEUE_DRIVER: database_polling
+    command: >
+      sh -c "pip install -r apps/api/requirements.txt &&
+      python scripts/run_migrations.py &&
+      python -m apps.api.workers.runtime_jobs"
+    depends_on:
+      api:
+        condition: service_started
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+
+  web:
+    image: node:22-alpine
+    working_dir: /workspace/apps/web
+    volumes:
+      - .:/workspace
+      - web-node-modules:/workspace/apps/web/node_modules
+    env_file:
+      - path: .env
+        required: false
+      - path: .env.local
+        required: false
+    environment:
+      VITE_API_BASE_URL: /api
+      VITE_API_PROXY_TARGET: http://api:8000
+    ports:
+      - "5173:5173"
+    command: >
+      sh -c "npm install &&
+      npm run dev -- --host 0.0.0.0 --port 5173"
+    depends_on:
+      - api
+
+volumes:
+  api-data:
+  web-node-modules:
+  postgres-data:
+  redis-data:

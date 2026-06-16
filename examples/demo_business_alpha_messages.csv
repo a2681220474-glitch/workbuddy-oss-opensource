@@ -1,0 +1,6 @@
+platform,conversation_id,conversation_type,message_id,sender_id,sender_name,sender_role,sent_at,content_type,content
+csv,community-alpha-001,group,community-msg-001,community-001,社群用户A,member,2026-05-20T16:30:00+08:00,text,"请问社群里这个课程怎么买，还有优惠名额吗？"
+csv,community-alpha-001,group,community-msg-002,community-002,社群用户B,member,2026-05-20T16:36:00+08:00,text,"昨晚直播体验课节奏太快，还有问题没人回复。"
+csv,community-alpha-002,group,community-msg-003,community-003,社群用户C,member,2026-05-20T17:05:00+08:00,text,"群里有人吗？我想报名训练营，怎么买？"
+csv,recruiting-alpha-001,private,recruiting-msg-001,candidate-001,张华,candidate,2026-05-20T18:10:00+08:00,text,"候选人张华，应聘后端工程师，5年经验，负责过支付系统项目，希望约面试。"
+csv,recruiting-alpha-002,private,recruiting-msg-002,candidate-002,李娜,candidate,2026-05-20T18:40:00+08:00,text,"候选人李娜的 offer 已确认，需要准备入职材料、合同、权限和工位。"

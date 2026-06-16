@@ -1,0 +1,50 @@
+[
+  {
+    "source": "json",
+    "external_message_id": "json-support-001",
+    "conversation_id": "json-support-room",
+    "conversation_type": "group",
+    "sender_id": "cust-json-001",
+    "sender_name": "马宁",
+    "sender_role": "customer",
+    "sent_at": "2026-05-20T16:05:00+08:00",
+    "content_type": "text",
+    "content": "订单已经付款，但是一直没有开通账号，请帮我查一下。"
+  },
+  {
+    "source": "json",
+    "external_message_id": "json-support-002",
+    "conversation_id": "json-support-room",
+    "conversation_type": "group",
+    "sender_id": "cust-json-002",
+    "sender_name": "许安",
+    "sender_role": "customer",
+    "sent_at": "2026-05-20T16:12:00+08:00",
+    "content_type": "text",
+    "content": "这个问题已经影响我们客服值班了，麻烦尽快处理。"
+  },
+  {
+    "source": "json",
+    "external_message_id": "json-sales-001",
+    "conversation_id": "json-sales-private",
+    "conversation_type": "private",
+    "sender_id": "lead-json-001",
+    "sender_name": "高磊",
+    "sender_role": "prospect",
+    "sent_at": "2026-05-20T17:00:00+08:00",
+    "content_type": "text",
+    "content": "我们想做飞书群里的客服工单自动整理，能不能安排一个 demo？"
+  },
+  {
+    "source": "json",
+    "external_message_id": "json-sales-002",
+    "conversation_id": "json-sales-private",
+    "conversation_type": "private",
+    "sender_id": "lead-json-001",
+    "sender_name": "高磊",
+    "sender_role": "prospect",
+    "sent_at": "2026-05-20T17:02:00+08:00",
+    "content_type": "text",
+    "content": "预算还没定，但如果下周能给方案，我们可以拉技术一起评估。"
+  }
+]

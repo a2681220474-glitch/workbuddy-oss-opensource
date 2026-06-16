@@ -1,0 +1,48 @@
+name: Feature request
+description: Suggest a product, Agent, adapter, or workflow improvement.
+title: "[Feature]: "
+labels: ["enhancement"]
+body:
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - Agent runtime
+        - Business objects
+        - Approval and audit
+        - Feishu
+        - WeCom
+        - DingTalk
+        - Web console
+        - Documentation
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What real workflow should this help?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+      description: What should WorkBuddy OSS do?
+    validations:
+      required: true
+  - type: textarea
+    id: notes
+    attributes:
+      label: Additional context
+      description: Include sample messages, adapter payloads, or screenshots if useful.
+  - type: checkboxes
+    id: acceptance
+    attributes:
+      label: Acceptance checks
+      options:
+        - label: User-facing workflow is clear in the web console
+        - label: Data is traceable through business objects and AgentRun
+        - label: External replies still require approval by default

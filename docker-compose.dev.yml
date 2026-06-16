@@ -1,0 +1,42 @@
+services:
+  postgres:
+    extends:
+      file: docker-compose.yml
+      service: postgres
+
+  redis:
+    extends:
+      file: docker-compose.yml
+      service: redis
+
+  api:
+    extends:
+      file: docker-compose.yml
+      service: api
+    environment:
+      APP_ENV: development
+      DEMO_SEED_ON_START: "true"
+
+  feishu-worker:
+    extends:
+      file: docker-compose.yml
+      service: feishu-worker
+    environment:
+      APP_ENV: development
+      ENABLE_REAL_IM_ADAPTERS: "true"
+
+  web:
+    extends:
+      file: docker-compose.yml
+      service: web
+    environment:
+      VITE_API_BASE_URL: /api
+      VITE_API_PROXY_TARGET: http://api:8000
+
+  runtime-jobs:
+    extends:
+      file: docker-compose.yml
+      service: runtime-jobs
+    environment:
+      APP_ENV: development
+      ENABLE_BACKGROUND_JOBS: "true"

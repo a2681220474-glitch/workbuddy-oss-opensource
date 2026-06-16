@@ -1,0 +1,48 @@
+name: Agent feedback
+description: Report a scenario Agent routing, action, approval, or audit issue.
+title: "[Agent]: "
+labels: ["agent"]
+body:
+  - type: dropdown
+    id: agent
+    attributes:
+      label: Agent
+      options:
+        - Support ticket knowledge
+        - Sales lead follow-up
+        - Community operations
+        - Recruiting and onboarding
+        - Router / fallback inbox
+        - Report agent
+    validations:
+      required: true
+  - type: textarea
+    id: message
+    attributes:
+      label: Input message or payload
+      description: Remove secrets and personal data before posting.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected route and business objects
+      description: Example: should create Ticket + Approval, should not create Lead.
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual result
+      description: Include MessageEvent ID, AgentRun ID, Approval ID, or screenshots when available.
+    validations:
+      required: true
+  - type: checkboxes
+    id: acceptance
+    attributes:
+      label: Acceptance checks
+      options:
+        - label: Route result is explainable
+        - label: Business object is correct
+        - label: External reply goes to approval first
+        - label: AgentRun audit includes prompt, output and action JSON

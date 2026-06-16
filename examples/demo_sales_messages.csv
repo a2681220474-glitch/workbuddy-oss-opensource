@@ -1,0 +1,6 @@
+platform,conversation_id,conversation_type,message_id,sender_id,sender_name,sender_role,sent_at,content_type,content
+csv,sales-private-001,private,sales-msg-001,lead-001,王总,prospect,2026-05-20T09:30:00+08:00,text,"我们公司 80 人左右，想了解私有化部署价格。"
+csv,sales-private-001,private,sales-msg-002,lead-001,王总,prospect,2026-05-20T09:35:00+08:00,text,"如果能先试用两周，下个月采购会可以评估。"
+csv,sales-group-002,group,sales-msg-003,lead-002,陈洁,prospect,2026-05-20T10:50:00+08:00,text,"你们和 Dify 比，主要差异是什么？我们主要想把企微群消息变成销售线索。"
+csv,sales-private-003,private,sales-msg-004,lead-003,刘明,prospect,2026-05-20T14:10:00+08:00,text,"能否发一份报价单和本地部署说明？我们预算大概 5 万以内。"
+csv,sales-private-004,private,sales-msg-005,lead-004,孙琳,prospect,2026-05-20T15:45:00+08:00,text,"我们想约明天下午演示，重点看审批队列和审计日志。"

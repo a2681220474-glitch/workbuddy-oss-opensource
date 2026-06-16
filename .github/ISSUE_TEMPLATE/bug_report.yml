@@ -1,0 +1,56 @@
+name: Bug report
+description: Report a reproducible WorkBuddy OSS bug.
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: What happened?
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Reproduction steps
+      description: Include import payloads, adapter payloads, or UI path when relevant.
+      placeholder: |
+        1. Start API and web
+        2. Import ...
+        3. Open ...
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs or screenshots
+      description: Paste API logs, browser errors, AgentRun IDs, or screenshots.
+      render: shell
+  - type: dropdown
+    id: affected_area
+    attributes:
+      label: Affected area
+      options:
+        - Dashboard / demo mode
+        - Import / messages
+        - Approval queue
+        - AgentRun audit
+        - Support ticket Agent
+        - Sales lead Agent
+        - Community operations Agent
+        - Recruiting onboarding Agent
+        - Adapter / channel
+        - Documentation
+        - Other
+  - type: input
+    id: version
+    attributes:
+      label: Version or commit
+      placeholder: v0.11.0 / commit SHA

@@ -1,0 +1,126 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    env_file:
+      - ../../.env.production
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-workbuddy}
+      POSTGRES_USER: ${POSTGRES_USER:-workbuddy}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?POSTGRES_PASSWORD is required}
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-workbuddy} -d ${POSTGRES_DB:-workbuddy}"]
+      interval: 10s
+      timeout: 5s
+      retries: 20
+
+  redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+    command: ["redis-server", "--appendonly", "yes"]
+    volumes:
+      - redis-data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 20
+
+  api:
+    build:
+      context: ../..
+      dockerfile: deploy/oci-free/api.Dockerfile
+    restart: unless-stopped
+    env_file:
+      - ../../.env.production
+    environment:
+      DATABASE_URL: postgresql+psycopg://${POSTGRES_USER:-workbuddy}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB:-workbuddy}
+      REDIS_URL: redis://redis:6379/0
+      ENABLE_BACKGROUND_JOBS: "true"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    volumes:
+      - api-data:/app/apps/api/data
+
+  web:
+    build:
+      context: ../..
+      dockerfile: deploy/oci-free/web.Dockerfile
+      args:
+        VITE_API_BASE_URL: /api
+    restart: unless-stopped
+    depends_on:
+      - api
+
+  runtime-jobs:
+    build:
+      context: ../..
+      dockerfile: deploy/oci-free/api.Dockerfile
+    restart: unless-stopped
+    command: ["python", "-m", "apps.api.workers.runtime_jobs"]
+    env_file:
+      - ../../.env.production
+    environment:
+      DATABASE_URL: postgresql+psycopg://${POSTGRES_USER:-workbuddy}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB:-workbuddy}
+      REDIS_URL: redis://redis:6379/0
+      ENABLE_BACKGROUND_JOBS: "true"
+      BACKGROUND_QUEUE_DRIVER: database_polling
+    depends_on:
+      api:
+        condition: service_started
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    volumes:
+      - api-data:/app/apps/api/data
+
+  feishu-worker:
+    build:
+      context: ../..
+      dockerfile: deploy/oci-free/api.Dockerfile
+    restart: unless-stopped
+    command: ["python", "-m", "apps.api.workers.feishu_stream"]
+    env_file:
+      - ../../.env.production
+    environment:
+      DATABASE_URL: postgresql+psycopg://${POSTGRES_USER:-workbuddy}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB:-workbuddy}
+      REDIS_URL: redis://redis:6379/0
+      ENABLE_REAL_IM_ADAPTERS: "true"
+    depends_on:
+      api:
+        condition: service_started
+      postgres:
+        condition: service_healthy
+    profiles:
+      - feishu
+    volumes:
+      - api-data:/app/apps/api/data
+
+  caddy:
+    image: caddy:2-alpine
+    restart: unless-stopped
+    env_file:
+      - ../../.env.production
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy-data:/data
+      - caddy-config:/config
+    depends_on:
+      - web
+      - api
+
+volumes:
+  postgres-data:
+  redis-data:
+  api-data:
+  caddy-data:
+  caddy-config:

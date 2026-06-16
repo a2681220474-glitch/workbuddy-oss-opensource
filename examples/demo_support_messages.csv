@@ -1,0 +1,6 @@
+platform,conversation_id,conversation_type,message_id,sender_id,sender_name,sender_role,sent_at,content_type,content
+csv,support-group-001,group,sup-msg-001,cust-001,林悦,customer,2026-05-20T09:05:00+08:00,text,"你好，我昨天买的团队版一直登录不上，提示验证码错误。"
+csv,support-group-001,group,sup-msg-002,cust-001,林悦,customer,2026-05-20T09:07:00+08:00,text,"如果今天还不能用，我想申请退款。"
+csv,support-group-002,group,sup-msg-003,cust-002,周航,customer,2026-05-20T10:15:00+08:00,text,"发票信息填错了，可以重新开一张公司抬头的吗？"
+csv,support-group-003,group,sup-msg-004,cust-003,何敏,customer,2026-05-20T11:20:00+08:00,text,"你们知识库里没有讲怎么批量导入历史聊天记录，我找不到入口。"
+csv,support-group-004,group,sup-msg-005,cust-004,赵乾,customer,2026-05-20T13:40:00+08:00,text,"刚才系统导入失败，页面显示 500，这个会影响已有数据吗？"

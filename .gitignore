@@ -1,0 +1,35 @@
+.DS_Store
+.env
+.env.local
+.env.local.pre-secret-migration
+.env.production
+apps/api/.env
+apps/api/.env.local
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+*.db
+*.sqlite
+*.sqlite3
+
+node_modules/
+dist/
+build/
+.vite/
+coverage/
+
+apps/api/data/
+apps/web/.env.local
+
+# Local release/demo artifacts that should not be committed by default.
+generated_documents/
+docs/assets/workbuddy_v0.12.0_demo.mp4
+scripts/generate_workbuddy_video_ffmpeg.py
+
+# Open-source copy local media artifacts
+docs/assets/ai-video/
+scripts/generate_workbuddy_ai_video.py
