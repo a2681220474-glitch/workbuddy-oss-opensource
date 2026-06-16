@@ -1,5 +1,11 @@
 # WorkBuddy OSS
 
+[![WorkBuddy OSS demo cover](docs/assets/demo/workbuddy-oss-v1.1.16-cover.png)](https://github.com/a2681220474-glitch/workbuddy-oss-opensource/releases/download/v1.1.16-demo/workbuddy-oss-v1.1.16-final.mp4)
+
+> 把飞书、企业微信、钉钉里的业务消息转成可审批、可审计、可复盘的工单、线索、任务和知识沉淀。
+
+[观看 3 分钟产品 Demo](https://github.com/a2681220474-glitch/workbuddy-oss-opensource/releases/download/v1.1.16-demo/workbuddy-oss-v1.1.16-final.mp4)
+
 WorkBuddy OSS 是面向中国团队的开源 IM Agent 工作流中台。它把飞书、企业微信、钉钉、Webhook、CSV/JSON 聊天记录里的非结构化消息，转成可处理、可审批、可审计、可复盘的业务对象。
 
 当前主线版本：`v1.1.16 部署恢复收口`
