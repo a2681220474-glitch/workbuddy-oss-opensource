@@ -32,9 +32,9 @@ def main() -> int:
     )
     checks.append(
         (
-            "handoff_version",
-            f"v{EXPECTED_VERSION}" in read_text("docs/HANDOFF_NEXT_CHAT.md"),
-            f"Handoff records v{EXPECTED_VERSION}.",
+            "release_doc_version",
+            f"v{EXPECTED_VERSION}" in read_text(f"docs/release/v{EXPECTED_VERSION}.md"),
+            f"Release doc records v{EXPECTED_VERSION}.",
         )
     )
 

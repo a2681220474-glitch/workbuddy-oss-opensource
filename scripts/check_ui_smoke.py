@@ -54,7 +54,6 @@ def main() -> int:
     navigation_ts = read_text("apps/web/src/utils/navigation.ts")
     index_html = read_text("apps/web/index.html")
     release_doc = read_text(f"docs/release/v{EXPECTED_VERSION}.md")
-    handoff = read_text("docs/HANDOFF_NEXT_CHAT.md")
     known_issues = read_text("docs/KNOWN_ISSUES.md")
 
     page_imports = set(re.findall(r'import\("\./pages/([^"]+)"\)', app_tsx))
@@ -129,10 +128,8 @@ def main() -> int:
         "release_docs",
         "隔离恢复" in release_doc
         and "npm run check:ui-smoke" in release_doc
-        and "v1.1.16" in handoff
-        and "check:ui-smoke" in handoff
         and "v1.1.16" in known_issues,
-        "Release, handoff, and known issues record the v1.1.16 deployment boundary.",
+        "Release and known issues record the v1.1.16 deployment boundary.",
     )
 
     failed = [item for item in checks if not item[1]]

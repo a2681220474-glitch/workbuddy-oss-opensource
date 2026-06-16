@@ -49,7 +49,6 @@ def main() -> int:
                 package_json = read_json(ROOT / "package.json")
                 scripts = package_json.get("scripts") or {}
                 release_doc = read_text(ROOT / f"docs/release/v{APP_VERSION}.md")
-                handoff = read_text(ROOT / "docs/HANDOFF_NEXT_CHAT.md")
                 rc = read_text(ROOT / "docs/RELEASE_CANDIDATE_CHECKLIST.md")
 
                 package_version = str(package_json.get("version") or "")
@@ -109,11 +108,11 @@ def main() -> int:
                 )
                 record(
                     checks,
-                    "handoff",
-                    f"v{APP_VERSION}" in handoff
-                    and "check:formal-release" in handoff
-                    and "维护模式边界" in handoff,
-                    "Handoff records the next-window formal closure instructions.",
+                    "release_boundary",
+                    f"v{APP_VERSION}" in release_doc
+                    and "npm run check:formal-release" in release_doc
+                    and "真实外发仍需用户明确授权" in release_doc,
+                    "Release doc records the formal closure boundary.",
                 )
                 record(
                     checks,

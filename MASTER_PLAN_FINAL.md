@@ -1,8 +1,8 @@
-# WorkAgent-CN / WorkBuddy OSS 最终产品架构与长期规划
+# WorkBuddy OSS 最终产品架构与长期规划
 
 版本：v4.0 Active Master Plan
 日期：2026-06-01
-定位：WorkBuddy OSS 当前唯一总准线。新窗口、新 Agent、后续交接都应先读本文档，再读 `obsidian/` 记忆库。
+定位：WorkBuddy OSS 当前唯一总准线。新窗口、新 Agent、后续交接都应先读本文档，再读 `docs/` 记忆库。
 
 ---
 
@@ -10,7 +10,7 @@
 
 本项目最终建议采用：
 
-- 仓库名：`WorkAgent-CN`
+- 仓库名：`WorkBuddy OSS`
 - 产品名：`WorkBuddy OSS`
 - 一句话定位：面向中国团队的开源 IM Agent 工作流中台，把飞书、企业微信、钉钉、聊天记录和业务消息转化为可跟踪、可审批、可复盘的业务流程。
 
@@ -33,7 +33,7 @@
 7. 所有产品显示、记录、验收说明默认使用北京时间 `Asia/Shanghai`。
 8. 当前开发节奏按“大版本主线 + 小版本补丁池”推进，不再每次做零散小补丁。
 9. 当前大版本是 `v1.1.x 私有运行安全与验收`；本地代码缺口已经归零，已进入本地正式收口和维护稳定性扫尾。
-10. 本文档是顶层目标；当前运行状态和补丁池以 `obsidian/03_当前状态.md`、`obsidian/05_小版本补丁池.md` 为准。
+10. 本文档是顶层目标；当前运行状态和补丁池以 `docs/KNOWN_ISSUES.md` 和 `docs/ROADMAP.md` 为准。
 
 最终产品形态：
 
@@ -64,10 +64,10 @@ Agent Router
 如果重新开一个窗口，或换一个 Agent 继续开发，必须按下面顺序理解项目：
 
 1. 先读 `/path/to/workbuddy-oss/MASTER_PLAN_FINAL.md`。
-2. 再读 `/path/to/workbuddy-oss/obsidian/00_INDEX.md`。
-3. 再读 `/path/to/workbuddy-oss/obsidian/02_大版本路线图.md`。
-4. 再读 `/path/to/workbuddy-oss/obsidian/03_当前状态.md`。
-5. 再读 `/path/to/workbuddy-oss/obsidian/05_小版本补丁池.md`。
+2. 再读 `/path/to/workbuddy-oss/README.md`。
+3. 再读 `/path/to/workbuddy-oss/docs/ROADMAP.md`。
+4. 再读 `/path/to/workbuddy-oss/docs/KNOWN_ISSUES.md`。
+5. 再读 `/path/to/workbuddy-oss/docs/ROADMAP.md`。
 
 当前项目状态：
 
@@ -88,7 +88,7 @@ Agent Router
 每次继续开发时的固定要求：
 
 - 先确认当前大版本，不要随意跳版本。
-- 除非阻塞验收，否则小问题写入 `obsidian/05_小版本补丁池.md`。
+- 除非阻塞验收，否则小问题写入 `docs/ROADMAP.md`。
 - 每个版本结束必须说明：本版做了什么、什么是新增、什么是优化、什么是修复、最终结果是什么、用户如何人工验收、下个版本规划是什么。
 - 涉及代码改动后必须按需要运行：
   - `npm run build:web`
@@ -633,7 +633,7 @@ CREATE TABLE knowledge_gaps (
 
 ### 5.6 开发路线
 
-本节只描述客服 Agent 的能力演进，不作为全项目版本路线。全项目版本路线以第 13 节和 `obsidian/02_大版本路线图.md` 为准。
+本节只描述客服 Agent 的能力演进，不作为全项目版本路线。全项目版本路线以第 13 节和 `docs/ROADMAP.md` 为准。
 
 | 阶段 | 功能 |
 |---|---|
@@ -1677,7 +1677,7 @@ v0.15.x 完成条件：
 - 知识版本
 - 编辑、审核、发布
 - 命中记录（`v0.19.2` 已开始落地：客服工单知识推荐会写入 KnowledgeHit，知识详情展示命中统计）
-- 知识图谱（`v0.19.3` 必做：参考 Obsidian 图谱视图，把知识条目、缺口、来源消息、工单、AgentRun、命中记录连成可点击关系图）
+- 知识图谱（`v0.19.3` 必做：参考 公开项目文档 图谱视图，把知识条目、缺口、来源消息、工单、AgentRun、命中记录连成可点击关系图）
 - 知识过期提醒
 - 文档/FAQ 导入
 - 向量索引
@@ -1838,7 +1838,7 @@ docs/
 
 ### 15.2 小版本补丁池规则
 
-大版本开发过程中，如果发现以下问题，先写入 `obsidian/05_小版本补丁池.md`：
+大版本开发过程中，如果发现以下问题，先写入 `docs/ROADMAP.md`：
 
 - UI 体验小问题
 - 表格列宽、搜索、横向滚动、文案、空状态问题
@@ -1859,7 +1859,7 @@ docs/
 - 给出人工验收步骤。
 - 给出下个版本规划。
 - 更新 release 文档。
-- 更新 Obsidian 记忆库。
+- 更新 公开项目文档 记忆库。
 - 跑必要验证命令。
 - 本地 git commit。
 - push 到 GitHub `origin/main`，除非用户当次明确要求不要 push。
@@ -1871,7 +1871,7 @@ docs/
 项目描述：
 
 ```text
-WorkAgent-CN / WorkBuddy OSS：面向中国团队的开源 IM Agent 工作流中台。
+WorkBuddy OSS：面向中国团队的开源 IM Agent 工作流中台。
 项目支持将飞书、企业微信、钉钉和聊天记录中的非结构化消息转化为工单、线索、任务、候选人和知识库条目，并通过 AI 草稿、人工审批、审计留痕和业务报表形成企业级闭环。
 ```
 
@@ -1891,7 +1891,7 @@ WorkAgent-CN / WorkBuddy OSS：面向中国团队的开源 IM Agent 工作流中
 
 最终建议采用以下路线：
 
-1. 以 `WorkAgent-CN` 作为 GitHub 仓库名，保证技术定位清晰。
+1. 以 `WorkBuddy OSS` 作为 GitHub 仓库名，保证技术定位清晰。
 2. 以 `WorkBuddy OSS` 作为产品品牌，增强亲和力和传播性。
 3. 用本文档作为唯一顶层准线，不参考旧方案。
 4. 当前继续推进 `v0.18.x 部署、数据和后台任务正式化`。
@@ -1912,4 +1912,4 @@ WorkAgent-CN / WorkBuddy OSS：面向中国团队的开源 IM Agent 工作流中
 
 一句话收束：
 
-> WorkAgent-CN 的长期价值，不是让 AI 多说几句话，而是让中国企业每天散落在 IM 里的消息，变成可执行、可跟踪、可审批、可沉淀的业务资产。
+> WorkBuddy OSS 的长期价值，不是让 AI 多说几句话，而是让中国企业每天散落在 IM 里的消息，变成可执行、可跟踪、可审批、可沉淀的业务资产。

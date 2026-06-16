@@ -1,4 +1,4 @@
-# WorkAgent-CN / WorkBuddy OSS Master Plan
+# WorkBuddy OSS Master Plan
 
 The canonical master plan currently lives at:
 
@@ -8,7 +8,7 @@ This file exists so GitHub readers can find the plan under `docs/`, while keepin
 
 Current summary:
 
-- Repository name: WorkAgent-CN
+- Repository name: WorkBuddy OSS
 - Product name: WorkBuddy OSS
 - Positioning: open-source IM Agent workflow middleware for Chinese teams
 - Core value: turn chat messages into trackable, approvable, auditable business objects

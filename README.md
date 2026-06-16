@@ -1,12 +1,10 @@
-# WorkAgent-CN / WorkBuddy OSS
-
-WorkAgent-CN 是仓库名，WorkBuddy OSS 是产品名。
+# WorkBuddy OSS
 
 WorkBuddy OSS 是面向中国团队的开源 IM Agent 工作流中台。它把飞书、企业微信、钉钉、Webhook、CSV/JSON 聊天记录里的非结构化消息，转成可处理、可审批、可审计、可复盘的业务对象。
 
 当前主线版本：`v1.1.16 部署恢复收口`
 
-远程 ECS 状态：`v1.1.14` 已完成真实验收和 PostgreSQL 隔离恢复演练，公网 HTTPS 入口为 `https://workbuddy.example.com`。`v1.1.16` 不部署或重启远程应用，只新增恢复演练工具和发布证据。
+公开版默认不包含任何私有部署、真实租户、真实 IM 应用或运行数据。部署到公网前，请先复制 `.env.example` 并填写自己的域名和应用凭据。
 
 ## 当前定位
 
@@ -109,12 +107,6 @@ http://localhost:5173/#config
 ENABLE_REAL_IM_ADAPTERS=true
 ENABLE_EXTERNAL_SEND=false
 WORKBUDDY_PUBLIC_BASE_URL=https://your-public-domain.example.com
-```
-
-当前阿里云 ECS 线上值：
-
-```env
-WORKBUDDY_PUBLIC_BASE_URL=https://workbuddy.example.com
 ```
 
 ## 飞书接入
@@ -226,8 +218,6 @@ npm run check:web-bundle
 ## 文档入口
 
 - `MASTER_PLAN_FINAL.md`：唯一总规划。
-- `obsidian/00_INDEX.md`：Obsidian 项目记忆库入口。
-- `docs/HANDOFF_NEXT_CHAT.md`：新窗口交接手册。
 - `docs/KNOWN_ISSUES.md`：当前已知问题和限制。
 - `docs/release/v1.1.16.md`：当前版本说明。
 - `docs/PRODUCT_TRAINER_GUIDE_CN.md`：产品全景讲解、用户培训与部署介绍。
@@ -244,7 +234,6 @@ apps/
   api/              FastAPI backend
   web/              React + Vite admin console
 docs/               产品、部署、验收和 release 文档
-obsidian/           项目记忆库
 examples/           演示导入数据和知识材料
 scripts/            本地服务、验收、备份、部署辅助脚本
 deploy/             私有化部署文件

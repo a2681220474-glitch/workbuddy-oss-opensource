@@ -114,8 +114,8 @@ def main() -> int:
                     admin.patch(
                         "/api/config/runtime/channels/feishu",
                         json={
-                            "app_id": "cli_acceptance",
-                            "app_secret": "temporary-feishu-secret",
+                            "app_id": "mock-feishu-app-id",
+                            "app_secret": "mock-feishu-app-secret",
                             "api_base_url": "https://open.feishu.cn",
                             "approval_chat_id": "oc_acceptance",
                         },
@@ -141,7 +141,7 @@ def main() -> int:
                     checks,
                     "feishu_runtime_persistence",
                     persisted_feishu.get("configured") is True
-                    and feishu_values.get("app_id") == "cli_acceptance"
+                    and feishu_values.get("app_id") == "mock-feishu-app-id"
                     and feishu_values.get("approval_chat_id") == "oc_acceptance"
                     and feishu_values.get("app_secret_configured") is True,
                     "Saved Feishu credentials and approval chat are visible after settings reload.",
@@ -348,8 +348,8 @@ def main() -> int:
                     checks,
                     "runtime_secret_separation",
                     "ENABLE_REAL_IM_ADAPTERS=true" in runtime_env
-                    and "FEISHU_APP_ID=cli_acceptance" in runtime_env
-                    and "temporary-feishu-secret" not in runtime_env,
+                    and "FEISHU_APP_ID=mock-feishu-app-id" in runtime_env
+                    and "mock-feishu-app-secret" not in runtime_env,
                     "Persistent runtime settings contain non-secrets only; Feishu secret remains encrypted.",
                 )
     except Exception as exc:

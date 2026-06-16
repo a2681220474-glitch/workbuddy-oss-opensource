@@ -22,7 +22,6 @@ def main() -> int:
     source_files = sorted((ROOT / "apps/web/src").rglob("*.tsx"))
     source_texts = {path.relative_to(ROOT).as_posix(): path.read_text(encoding="utf-8") for path in source_files}
     known_issues = read_text("docs/KNOWN_ISSUES.md")
-    handoff = read_text("docs/HANDOFF_NEXT_CHAT.md")
     release_doc = read_text(f"docs/release/v{EXPECTED_VERSION}.md")
 
     record(
@@ -123,12 +122,10 @@ def main() -> int:
     )
     record(
         checks,
-        "handoff_release_doc",
-        "v1.1.16" in handoff
-        and "check:frontend-maintenance" in handoff
-        and "隔离恢复" in release_doc
+        "release_doc",
+        "隔离恢复" in release_doc
         and "npm run check:frontend-maintenance" in release_doc,
-        "Handoff and release notes document the maintenance check.",
+        "Release notes document the maintenance check.",
     )
 
     failed = [item for item in checks if not item[1]]

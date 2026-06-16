@@ -2,4 +2,4 @@
 
 ## Unreleased
 
-- Initialize WorkAgent-CN / WorkBuddy OSS monorepo.
+- Initialize WorkBuddy OSS monorepo.
